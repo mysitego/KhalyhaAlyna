@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المقالات التعليمية</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            direction: rtl;
+        }
+        .article-list-item {
+            cursor: pointer;
+            transition: background-color 0.3s, padding-left 0.3s;
+            padding-left: 1rem;
+        }
+        .article-list-item:hover {
+            background-color: #f1f1f1;
+            padding-left: 1.5rem;
+        }
+        .article-content {
+            display: none;
+        }
+    </style>
+    <script>
+        function showArticle(articleId) {
+            document.querySelectorAll('.article-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            document.getElementById(articleId).style.display = 'block';
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-blue-500 text-base font-bold flex justify-center items-end">
+                <img src="logo.png" width="80px" alt="">
+                <span>خلها علينا</span>
+            </div>
+            <div class="hidden md:flex space-x-4">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="#services" class="text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+                <a href="#articles" class="text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+                <a href="#community" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="#contact" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            </div>
+            <button class="bg-yellow-400  hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-blue-500 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="menu" class="hidden md:hidden">
+            <a href="#" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="#services" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+            <a href="#articles" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+            <a href="#community" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="#contact" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="container mx-auto p-4 mt-16">
+        <section class="text-center bg-white p-10 rounded-lg shadow-lg my-8">
+            <h1 class="text-4xl font-bold mb-6 text-blue-700">المقالات التعليمية</h1>
+            <p class="mb-6 text-lg text-blue-700">اكتشف مقالاتنا التعليمية المتنوعة حول صيانة السيارات وإصلاح الأعطال.</p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Articles List -->
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <h2 class="text-2xl font-bold mb-4 text-blue-700">قائمة المقالات</h2>
+                <ul class="space-y-4">
+                    <li class="article-list-item text-blue-700 hover:text-blue-900 hover:bg-blue-400 py-2 bg-blue-200 px-1 rounded" onclick="showArticle('article1')">كيفية تغيير زيت المحرك</li>
+                    <li class="article-list-item text-blue-700 hover:text-blue-900 hover:bg-blue-400 py-2 bg-blue-200 px-1 rounded" onclick="showArticle('article2')">نصائح للحفاظ على إطارات السيارة</li>
+                    <li class="article-list-item text-blue-700 hover:text-blue-900 hover:bg-blue-400 py-2 bg-blue-200 px-1 rounded" onclick="showArticle('article3')">كيفية تشخيص مشاكل البطارية</li>
+                    <!-- Add more articles as needed -->
+                </ul>
+            </div>
+
+            <!-- Article Content -->
+            <div class="bg-white p-4 rounded-lg shadow-md md:col-span-2">
+                <div id="article1" class="article-content ">
+                    <img src="https://via.placeholder.com/600x400" alt="كيفية تغيير زيت المحرك" class="rounded-lg mb-4 w-full">
+                    <h2 class="text-3xl font-bold mb-4 text-blue-700">كيفية تغيير زيت المحرك</h2>
+                    <p class="text-gray-700 mb-4">تغيير زيت المحرك هو جزء أساسي من صيانة السيارة. في هذا المقال، سنتعلم كيفية تغيير زيت المحرك خطوة بخطوة لضمان أداء مثالي ومحافظة على المحرك.</p>
+                    <p class="text-gray-700 mb-4">أولاً، تحتاج إلى تحضير الأدوات اللازمة: وعاء لتجميع الزيت القديم، مفتاح لفك فلتر الزيت، فلتر زيت جديد، وزيت محرك جديد. تأكد من أن السيارة باردة قبل البدء.</p>
+                    <p class="text-gray-700 mb-4">ثانياً، ارفع السيارة باستخدام الرافعة وتأكد من ثباتها. ضع الوعاء تحت محرك السيارة وافتح صمام تصريف الزيت باستخدام المفتاح المناسب. دع الزيت القديم يتدفق بالكامل.</p>
+                    <p class="text-gray-700 mb-4">ثالثاً، بعد تصريف الزيت، قم بفك فلتر الزيت القديم واستبدله بالجديد. ضع القليل من الزيت الجديد على حافة الفلتر الجديد قبل تركيبه لضمان إحكامه.</p>
+                    <p class="text-gray-700 mb-4">أخيراً، اغلق صمام تصريف الزيت وأعد ملء المحرك بالزيت الجديد وفقاً للكمية الموصى بها في دليل المالك. تأكد من مستوى الزيت باستخدام مقياس الزيت.</p>
+                </div>
+                <div id="article2" class="article-content">
+                    <img src="https://via.placeholder.com/600x400" alt="نصائح للحفاظ على إطارات السيارة" class="rounded-lg mb-4">
+                    <h2 class="text-3xl font-bold mb-4 text-blue-700">نصائح للحفاظ على إطارات السيارة</h2>
+                    <p class="text-gray-700 mb-4">الإطارات هي أحد أهم أجزاء السيارة. في هذا المقال، سنقدم لك بعض النصائح للحفاظ على إطارات سيارتك بحالة جيدة لضمان السلامة والأداء المثالي.</p>
+                    <p class="text-gray-700 mb-4">أولاً، تأكد من فحص ضغط الهواء في الإطارات بانتظام. يجب أن يكون الضغط وفقًا للتوصيات الموجودة في دليل المالك أو الملصق الموجود على باب السائق.</p>
+                    <p class="text-gray-700 mb-4">ثانياً، تحقق من تآكل الإطارات بانتظام. إذا لاحظت أن الإطارات تتآكل بشكل غير متساوٍ، فقد يكون ذلك مؤشرًا على مشكلة في التوازن أو المحاذاة.</p>
+                    <p class="text-gray-700 mb-4">ثالثاً، قم بتدوير الإطارات بانتظام لضمان تآكل متساوٍ. يُفضل تدوير الإطارات كل 10,000 كيلومتر أو حسب توصيات الشركة المصنعة.</p>
+                    <p class="text-gray-700 mb-4">أخيراً، تجنب الحمولة الزائدة والقيادة بسرعات عالية. الحمولة الزائدة تؤثر على توازن الإطارات، والقيادة بسرعات عالية تزيد من حرارة الإطارات وتآكلها بسرعة.</p>
+                </div>
+                <div id="article3" class="article-content">
+                    <img src="https://via.placeholder.com/600x400" alt="كيفية تشخيص مشاكل البطارية" class="rounded-lg mb-4">
+                    <h2 class="text-3xl font-bold mb-4 text-blue-700">كيفية تشخيص مشاكل البطارية</h2>
+                    <p class="text-gray-700 mb-4">إذا كانت سيارتك تعاني من مشاكل في البطارية، في هذا المقال سنشرح كيفية تشخيص هذه المشاكل وما يمكن فعله لحلها لضمان عدم تعطل السيارة.</p>
+                    <p class="text-gray-700 mb-4">أولاً، تأكد من نظافة وصلات البطارية. تراكم الأوساخ والصدأ على الوصلات يمكن أن يعيق انتقال الكهرباء. استخدم فرشاة سلكية لتنظيف الوصلات.</p>
+                    <p class="text-gray-700 mb-4">ثانياً، تحقق من شحن البطارية باستخدام جهاز فحص البطارية. إذا كانت القراءة أقل من 12.4 فولت، فهذا يعني أن البطارية بحاجة إلى الشحن.</p>
+                    <p class="text-gray-700 mb-4">ثالثاً، افحص حزام المولد للتأكد من عدم وجود تشققات أو تآكل. حزام المولد هو المسؤول عن شحن البطارية أثناء تشغيل المحرك.</p>
+                    <p class="text-gray-700 mb-4">أخيراً، إذا كانت البطارية قديمة (أكثر من 3 سنوات)، فقد تكون بحاجة إلى استبدالها. تأكد من اختيار بطارية متوافقة مع مواصفات سيارتك.</p>
+                </div>
+                <!-- Add more article contents as needed -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-blue-700 text-white text-center p-4">
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show the first article by default
+            showArticle('article1');
+        });
+
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حجز مواعيد الورشة</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            direction: rtl;
+        }
+        .workshop-card {
+            transition: transform 0.3s;
+        }
+        .workshop-card:hover {
+            transform: scale(1.05);
+        }
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .whatsapp-btn:hover {
+            background-color: #1DA851;
+        }
+    </style>
+    <script>
+        function showBookingForm(workshopTitle, whatsappNumber) {
+            document.getElementById('workshop-title').innerText = workshopTitle;
+            document.getElementById('whatsapp-number').value = whatsappNumber;
+            document.getElementById('booking-form').style.display = 'block';
+            document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function sendBookingDetails() {
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var workshopTitle = document.getElementById('workshop-title').innerText;
+            var whatsappNumber = document.getElementById('whatsapp-number').value;
+            var whatsappUrl = `https://wa.me/${whatsappNumber}?text=الاسم%20:%20${encodeURIComponent(name)}%0Aالايميل%20:%20${encodeURIComponent(email)}%0Aاود%20ان%20اقوم%20بالحجز%20في%20هذه%20الورشة%20${encodeURIComponent(workshopTitle)}%0Aارجو%20ارسال%20التاكيد%20وشكرا`;
+
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-blue-500 text-base font-bold flex justify-center items-end">
+                <img src="logo.png" width="80px" alt="">
+                <span>خلها علينا</span>
+            </div>
+            <div class="hidden md:flex space-x-4">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="#services" class="text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+                <a href="#articles" class="text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+                <a href="#community" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="#contact" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            </div>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-blue-500 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="menu" class="hidden md:hidden">
+            <a href="#" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="#services" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+            <a href="#articles" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+            <a href="#community" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="#contact" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="container mx-auto p-4 mt-16">
+        <section class="text-center bg-white p-10 rounded-lg shadow-lg my-8">
+            <h1 class="text-4xl font-bold mb-6 text-blue-700">حجز مواعيد الورشة</h1>
+            <p class="mb-6 text-lg text-blue-700">اختر ورشة واحجز موعدك الآن.</p>
+        </section>
+
+        <section class="bg-white p-10 rounded-lg shadow-lg my-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Workshop Card 1 -->
+                <div class="workshop-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="ورشة صيانة محرك" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">ورشة صيانة محرك</h3>
+                    <p class="text-gray-700 mb-4">ورشة متخصصة في صيانة المحركات بجميع أنواعها.</p>
+                    <button class="whatsapp-btn w-full py-2 px-4 rounded-full flex items-center justify-center" onclick="showBookingForm('ورشة صيانة محرك', '+966565117544')">
+                        <i class='bx bxl-whatsapp text-xl mr-2'></i> حجز
+                    </button>
+                </div>
+                <!-- Workshop Card 2 -->
+                <div class="workshop-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="ورشة تغيير إطارات" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">ورشة تغيير إطارات</h3>
+                    <p class="text-gray-700 mb-4">ورشة متخصصة في تغيير وصيانة الإطارات.</p>
+                    <button class="whatsapp-btn w-full py-2 px-4 rounded-full flex items-center justify-center" onclick="showBookingForm('ورشة تغيير إطارات', '+966565117544')">
+                        <i class='bx bxl-whatsapp text-xl mr-2'></i> حجز
+                    </button>
+                </div>
+                <!-- Workshop Card 3 -->
+                <div class="workshop-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="ورشة فحص كهرباء" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">ورشة فحص كهرباء</h3>
+                    <p class="text-gray-700 mb-4">ورشة متخصصة في فحص وإصلاح الأعطال الكهربائية.</p>
+                    <button class="whatsapp-btn w-full py-2 px-4 rounded-full flex items-center justify-center" onclick="showBookingForm('ورشة فحص كهرباء', '+966565117544')">
+                        <i class='bx bxl-whatsapp text-xl mr-2'></i> حجز
+                    </button>
+                </div>
+                <!-- Add more workshop cards as needed -->
+            </div>
+        </section>
+
+        <!-- Booking Form -->
+        <section id="booking-form" class="bg-white p-10 rounded-lg shadow-lg my-8 hidden">
+            <h2 class="text-3xl font-bold mb-6 text-blue-700">حجز في <span id="workshop-title"></span></h2>
+            <form onsubmit="event.preventDefault(); sendBookingDetails();">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 mb-2">الاسم</label>
+                    <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-md" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 mb-2">البريد الإلكتروني</label>
+                    <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-md" required>
+                </div>
+                <input type="hidden" id="whatsapp-number">
+                <button type="submit" class="bg-blue-700 text-white py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300">تأكيد الحجز</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="bg-blue-700 text-white text-center p-4">
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
+    </script>
+    
+</body>
+</html>

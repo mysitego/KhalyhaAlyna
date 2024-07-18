@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أسعار قطع غيار السيارات</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        body {
+            direction: rtl;
+        }
+        .part-card {
+            transition: transform 0.3s;
+        }
+        .part-card:hover {
+            transform: scale(1.05);
+        }
+        .price-tag {
+            background-color: #25D366;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-blue-500 text-base font-bold flex justify-center items-end">
+                <img src="logo.png" width="80px" alt="">
+                <span>خلها علينا</span>
+            </div>
+            <div class="hidden md:flex space-x-4">
+                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="#services" class="text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+                <a href="#articles" class="text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+                <a href="#community" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="#contact" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            </div>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-blue-500 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="menu" class="hidden md:hidden">
+            <a href="#" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="#services" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+            <a href="#articles" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+            <a href="#community" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="#contact" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
+        </div>
+    </nav>
+
+    <!-- Main content -->
+    <main class="container mx-auto p-4 mt-16">
+        <section class="text-center bg-white p-10 rounded-lg shadow-lg my-8">
+            <h1 class="text-4xl font-bold mb-6 text-blue-700">أسعار قطع غيار السيارات</h1>
+            <p class="mb-6 text-lg text-blue-700">اكتشف أسعار قطع غيار السيارات لدينا.</p>
+        </section>
+
+        <section class="bg-white p-10 rounded-lg shadow-lg my-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Part Card 1 -->
+                <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="فلتر زيت" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">فلتر زيت</h3>
+                    <p class="text-gray-700 mb-4">فلتر الزيت يساعد في الحفاظ على نظافة الزيت وتحسين أداء المحرك.</p>
+                    <div class="price-tag">50 ريال</div>
+                </div>
+                <!-- Part Card 2 -->
+                <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="بطارية سيارة" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">بطارية سيارة</h3>
+                    <p class="text-gray-700 mb-4">بطارية عالية الأداء توفر طاقة موثوقة لسيارتك.</p>
+                    <div class="price-tag">300 ريال</div>
+                </div>
+                <!-- Part Card 3 -->
+                <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="إطار سيارة" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">إطار سيارة</h3>
+                    <p class="text-gray-700 mb-4">إطار متين يوفر قيادة مريحة وآمنة على جميع الطرق.</p>
+                    <div class="price-tag">200 ريال</div>
+                </div>
+                <!-- Part Card 4 -->
+                <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="شمعات الإشعال" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">شمعات الإشعال</h3>
+                    <p class="text-gray-700 mb-4">شمعات إشعال ذات جودة عالية لتحسين أداء المحرك.</p>
+                    <div class="price-tag">80 ريال</div>
+                </div>
+                <!-- Part Card 5 -->
+                <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="فلتر هواء" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">فلتر هواء</h3>
+                    <p class="text-gray-700 mb-4">فلتر هواء عالي الأداء يضمن تدفق هواء نظيف إلى المحرك.</p>
+                    <div class="price-tag">60 ريال</div>
+                </div>
+                <!-- Part Card 6 -->
+                <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
+                    <img src="https://via.placeholder.com/150" alt="مكابح" class="rounded-lg w-24 mx-auto mb-4">
+                    <h3 class="text-xl font-bold mb-2">مكابح</h3>
+                    <p class="text-gray-700 mb-4">مكابح عالية الجودة لضمان سلامتك أثناء القيادة.</p>
+                    <div class="price-tag">150 ريال</div>
+                </div>
+                <!-- Add more part cards as needed -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-blue-700 text-white text-center p-4">
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
+    </script>
+    
+</body>
+</html>

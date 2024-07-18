@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خلها علينا</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.min.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH/PR4+SmI2EmzHZ8zWl6r/GdnjS5LJjOjKi1Uow5I8U6LGsmuy7uvDw5aVKlE6kU4j1v9Zg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            direction: rtl;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-blue-700 p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white text-3xl font-bold">خلها علينا</div>
+            <nav class="hidden md:flex space-x-4 text-white">
+                <a href="#" class="hover:text-gray-300 transition duration-300">الرئيسية</a>
+                <a href="#" class="hover:text-gray-300 transition duration-300">الخدمات</a>
+                <a href="#" class="hover:text-gray-300 transition duration-300">من نحن</a>
+                <a href="#" class="hover:text-gray-300 transition duration-300">اتصل بنا</a>
+            </nav>
+            <button @click="open = !open" class="md:hidden text-white focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <div x-data="{ open: false }" @click.away="open = false" class="md:hidden">
+        <nav x-show="open" class="bg-blue-700 text-white p-4 space-y-2">
+            <a href="#" class="block hover:text-gray-300 transition duration-300">الرئيسية</a>
+            <a href="#" class="block hover:text-gray-300 transition duration-300">الخدمات</a>
+            <a href="#" class="block hover:text-gray-300 transition duration-300">من نحن</a>
+            <a href="#" class="block hover:text-gray-300 transition duration-300">اتصل بنا</a>
+        </nav>
+    </div>
+
+    <main class="container mx-auto p-4">
+        <section class="text-center bg-white p-10 rounded-lg shadow-lg my-8">
+            <h1 class="text-5xl font-bold mb-6 text-blue-700">مرحباً بكم في خلها علينا</h1>
+            <p class="mb-6 text-lg">نحن منصة ويب مبتكرة مخصصة لتقديم خدمات شاملة متعلقة بالسيارات</p>
+            <button class="bg-blue-700 text-white py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300">ابدأ الآن</button>
+        </section>
+
+        <section class="bg-white p-10 rounded-lg shadow-lg my-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-700 text-center">خدماتنا</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fab fa-whatsapp text-4xl text-green-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">استشارات فورية عبر WhatsApp</h3>
+                        <p class="text-center">تقديم استشارات سريعة ومباشرة عبر تطبيق WhatsApp.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-book text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">مقالات تعليمية عن صيانة السيارات</h3>
+                        <p class="text-center">مقالات تفصيلية لمساعدتك في فهم صيانة السيارات.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-tools text-4xl text-red-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">طلب المساعدة الطارئة على الطريق</h3>
+                        <p class="text-center">تقديم مساعدة فورية في حالات الطوارئ على الطريق.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-users text-4xl text-purple-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">مجتمع افتراضي لتبادل النصائح</h3>
+                        <p class="text-center">منتدى تفاعلي لتبادل الخبرات والنصائح بين المستخدمين.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-calendar-check text-4xl text-teal-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">حجز مواعيد الورش</h3>
+                        <p class="text-center">حجز مواعيد للورش المتخصصة بسهولة وسرعة.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-video text-4xl text-pink-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">استشارات نصية أو فيديو</h3>
+                        <p class="text-center">خدمات استشارية نصية وفيديو على مدار الساعة.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-headset text-4xl text-yellow-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">خدمة عملاء على مدار الساعة</h3>
+                        <p class="text-center">خدمة عملاء متاحة على مدار الساعة للمساعدة والدعم.</p>
+                    </a>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                    <a href="#" class="flex flex-col items-center">
+                        <i class="fas fa-tags text-4xl text-indigo-500 mb-4"></i>
+                        <h3 class="font-bold text-xl mb-2">تسعير قطع الغيار</h3>
+                        <p class="text-center">تقديم تسعيرات محدثة لقطع غيار السيارات المختلفة.</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-10 rounded-lg shadow-lg my-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-700 text-center">من نحن</h2>
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-6 lg:mb-0">
+                    <img src="https://via.placeholder.com/500x400" alt="عن خلها علينا" class="rounded-lg shadow-lg">
+                </div>
+                <div class="lg:w-1/2 lg:pl-10">
+                    <p class="mb-6 text-lg">مرحبًا بكم في خلها علينا، منصة ويب مبتكرة مخصصة لتقديم خدمات شاملة متعلقة بالسيارات، مع التركيز بشكل خاص على مساعدة النساء في المملكة العربية السعودية اللاتي قد يجدن صعوبة في زيارة ورش الإصلاح. مهمتنا هي تمكين النساء بالمعرفة والدعم اللازمين للتعامل مع مشكلات السيارات بثقة واستقلالية.</p>
+                    <h3 class="text-2xl font-bold mb-4">قيمنا الأساسية:</h3>
+                    <ul class="list-disc list-inside text-lg">
+                        <li class="mb-4 flex items-center">
+                            <i class="fas fa-hands-helping text-blue-700 mr-3"></i>
+                            <strong>التمكين:</strong> نؤمن بتمكين النساء من خلال تزويدهن بالمعرفة والأدوات اللازمة لإدارة مشكلات السيارات بأنفسهن.
+                        </li>
+                        <li class="mb-4 flex items-center">
+                            <i class="fas fa-users text-blue-700 mr-3"></i>
+                            <strong>المجتمع:</strong> نهدف إلى بناء مجتمع داعم حيث يمكن للمستخدمين مشاركة الخبرات والنصائح والتوجيهات، مما يعزز روح التضامن والمساعدة المتبادلة.
+                        </li>
+                        <li class="mb-4 flex items-center">
+                            <i class="fas fa-globe text-blue-700 mr-3"></i>
+                            <strong>سهولة الوصول:</strong> خدماتنا مصممة لتكون سهلة الوصول، مما يوفر المساعدة الفورية والمعلومات الموثوقة في أي وقت ومن أي مكان.
+                        </li>
+                        <li class="mb-4 flex items-center">
+                            <i class="fas fa-shield-alt text-blue-700 mr-3"></i>
+                            <strong>الموثوقية:</strong> نسعى لتقديم خدمات موثوقة وجديرة بالثقة، مما يضمن أن مستخدمينا يمكنهم الاعتماد علينا للحصول على معلومات دقيقة ومساعدة فورية.
+                        </li>
+                        <li class="mb-4 flex items-center">
+                            <i class="fas fa-lightbulb text-blue-700 mr-3"></i>
+                            <strong>الابتكار:</strong> نحن ملتزمون بالابتكار المستمر وتحسين منصتنا لتلبية احتياجات مستخدمينا المتطورة وتقديم أفضل خدمة ممكنة.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="bg-white p-10 rounded-lg shadow-lg my-8">
+            <h2 class="text-3xl font-bold mb-6 text-blue-700 text-center">اتصل بنا</h2>
+            <form class="space-y-6">
+                <div>
+                    <label class="block text-sm font-medium mb-2">الاسم</label>
+                    <input type="text" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">البريد الإلكتروني</label>
+                    <input type="email" class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700" required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">الرسالة</label>
+                    <textarea class="mt-1 block w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-700" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="bg-blue-700 text-white py-3 px-6 rounded-full hover:bg-blue-600 transition duration-300">إرسال</button>
+            </form>
+            <div class="mt-8 text-center">
+                <p class="mb-2">معلومات الاتصال:</p>
+                <p class="mb-2">البريد الإلكتروني: info@khallaha.com</p>
+                <p class="mb-4">الهاتف: +966 1234 5678</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-blue-700 hover:text-blue-500 transition duration-300 text-2xl"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-blue-700 hover:text-blue-500 transition duration-300 text-2xl"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-blue-700 hover:text-blue-500 transition duration-300 text-2xl"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-blue-700 text-white text-center p-4">
+        <p>جميع الحقوق محفوظة © 2024</p>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجتمع افتراضي - خلها علينا</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            direction: rtl;
+        }
+        .question-card {
+            border-right: 4px solid #3b82f6; /* Blue border */
+            position: relative;
+        }
+        .answer-card {
+            border-right: 4px solid #60a5fa; /* Light blue border */
+            margin-right: 2rem; /* Indent answers */
+            font-size: 0.875rem; /* Smaller font size */
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+        }
+        .name {
+            font-weight: bold;
+            color: #1e40af; /* Dark Blue */
+        }
+        .toggle-button {
+            cursor: pointer;
+            color: #3b82f6; /* Blue */
+            font-size: 0.875rem; /* Smaller font size */
+        }
+        .hidden {
+            display: none;
+        }
+        .recording-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .preview {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .video-preview, .audio-preview {
+            max-width: 100px;
+            max-height: 100px;
+        }
+    </style>
+</head>
+<body class="bg-blue-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-blue-500 text-2xl font-bold">Logo</div>
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="virtual_community.html" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            </div>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded hidden md:block">ابدأ الآن</button>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-blue-500 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="menu" class="hidden md:hidden">
+            <a href="index.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="virtual_community.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-blue-200 py-20 pt-32" style="background-image: url('/mnt/data/hero.png'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl font-bold text-white mb-4">المجتمع الافتراضي</h1>
+            <p class="text-lg text-white mb-8">محادثة مجتمع افتراضي لتبادل الخبرات والنصائح بين السائقين.</p>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="container mx-auto px-4 py-20">
+        <h2 class="text-3xl font-bold text-blue-900 text-center mb-12">طرح الأسئلة والمشاركة</h2>
+        <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+            <h3 class="text-2xl font-bold text-blue-900 mb-4">اكتب سؤالك</h3>
+            <div class="recording-buttons mb-4">
+                <button type="button" class="bg-green-500 w-1/2 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="startRecording('audio')">
+                    <i class="fas fa-microphone"></i>
+                </button>
+                <button type="button" class="bg-red-500 w-1/2 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="startRecording('video')">
+                    <i class="fas fa-video"></i>
+                </button>
+            </div>
+            <div class="preview" id="preview"></div>
+            <div class="recording-buttons hidden mb-4" id="recordingControls">
+                <button type="button" class="bg-yellow-500 w-full hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onclick="stopRecording()">
+                    <i class="fas fa-stop"></i>
+                </button>
+            </div>
+            <button class="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" onclick="submitQuestion()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+        <div id="questionsList" class="space-y-8">
+            <!-- Questions will be dynamically added here -->
+        </div>
+    </section>
+
+    <script>
+        let mediaRecorder;
+        let recordedChunks = [];
+        let recordingType = '';
+        let previewURL = '';
+
+        function startRecording(type) {
+            recordingType = type;
+            let constraints = {};
+            if (type === 'audio') {
+                constraints = { audio: true, video: false };
+            } else if (type === 'video') {
+                constraints = { audio: true, video: true };
+            }
+
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(stream => {
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = handleDataAvailable;
+                    mediaRecorder.onstop = () => handleStop(type);
+
+                    mediaRecorder.start();
+                    document.getElementById('recordingControls').classList.remove('hidden');
+
+                    const previewElement = document.createElement(type === 'audio' ? 'audio' : 'video');
+                    previewElement.controls = true;
+                    previewElement.className = type === 'audio' ? 'audio-preview' : 'video-preview';
+                    previewElement.srcObject = stream;
+                    document.getElementById('preview').appendChild(previewElement);
+                })
+                .catch(err => {
+                    console.error('Error accessing media devices.', err);
+                });
+        }
+
+        function handleDataAvailable(event) {
+            if (event.data.size > 0) {
+                recordedChunks.push(event.data);
+            }
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            document.getElementById('recordingControls').classList.add('hidden');
+        }
+
+        function handleStop(type) {
+            const blob = new Blob(recordedChunks, {
+                type: type === 'audio' ? 'audio/webm' : 'video/webm'
+            });
+            recordedChunks = [];
+            previewURL = URL.createObjectURL(blob);
+            const previewElement = document.querySelector(type === 'audio' ? '.audio-preview' : '.video-preview');
+            previewElement.srcObject = null;
+            previewElement.src = previewURL;
+        }
+
+        function submitQuestion() {
+            const previewContainer = document.getElementById('preview');
+            if (previewURL === '') return;
+
+            const questionCard = document.createElement('div');
+            questionCard.className = 'bg-white p-6 rounded-lg shadow-lg question-card';
+
+            const profileImg = document.createElement('img');
+            profileImg.className = 'profile-img';
+            profileImg.src = 'https://via.placeholder.com/40';
+            profileImg.alt = 'Profile Image';
+
+            const questionContent = document.createElement('div');
+            questionContent.className = 'flex-1';
+            const name = document.createElement('span');
+            name.className = 'name';
+            name.innerText = 'اسم المستخدم';
+
+            questionContent.appendChild(name);
+
+            if (recordingType === 'audio') {
+                const audioElem = document.createElement('audio');
+                audioElem.controls = true;
+                audioElem.src = previewURL;
+                audioElem.className = 'audio-preview';
+                questionContent.appendChild(audioElem);
+            } else if (recordingType === 'video') {
+                const videoElem = document.createElement('video');
+                videoElem.controls = true;
+                videoElem.className = 'video-preview';
+                videoElem.src = previewURL;
+                questionContent.appendChild(videoElem);
+            }
+
+            const toggleButton = document.createElement('span');
+            toggleButton.className = 'toggle-button';
+            toggleButton.innerText = 'عرض التعليقات';
+            toggleButton.onclick = () => toggleAnswers(answersContainer, toggleButton);
+
+            const answerForm = document.createElement('div');
+            answerForm.className = 'answer-form mb-4 flex flex-col';
+            
+            const answerRecordingButtons = document.createElement('div');
+            answerRecordingButtons.className = 'recording-buttons mb-4';
+
+            const audioAnswerButton = document.createElement('button');
+            audioAnswerButton.className = 'bg-green-500 w-1/2 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline';
+            audioAnswerButton.type = 'button';
+            audioAnswerButton.innerHTML = '<i class="fas fa-microphone"></i>';
+            audioAnswerButton.onclick = () => startRecording('audio');
+
+            const videoAnswerButton = document.createElement('button');
+            videoAnswerButton.className = 'bg-red-500 w-1/2 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline';
+            videoAnswerButton.type = 'button';
+            videoAnswerButton.innerHTML = '<i class="fas fa-video"></i>';
+            videoAnswerButton.onclick = () => startRecording('video');
+
+            answerRecordingButtons.appendChild(audioAnswerButton);
+            answerRecordingButtons.appendChild(videoAnswerButton);
+
+            const answerPreview = document.createElement('div');
+            answerPreview.className = 'preview';
+
+            const answerRecordingControls = document.createElement('div');
+            answerRecordingControls.className = 'recording-buttons hidden mb-4';
+            answerRecordingControls.id = 'answerRecordingControls';
+
+            const stopAnswerButton = document.createElement('button');
+            stopAnswerButton.className = 'bg-yellow-500 w-1/2 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline';
+            stopAnswerButton.type = 'button';
+            stopAnswerButton.innerHTML = '<i class="fas fa-stop"></i>';
+            stopAnswerButton.onclick = () => stopRecording();
+
+            answerRecordingControls.appendChild(stopAnswerButton);
+
+            const sendAnswerButton = document.createElement('button');
+            sendAnswerButton.className = 'bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline';
+            sendAnswerButton.type = 'button';
+            sendAnswerButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
+            sendAnswerButton.onclick = () => submitAnswer(answersContainer);
+
+            answerForm.appendChild(answerRecordingButtons);
+            answerForm.appendChild(answerPreview);
+            answerForm.appendChild(answerRecordingControls);
+            answerForm.appendChild(sendAnswerButton);
+
+            questionCard.appendChild(profileImg);
+            questionCard.appendChild(questionContent);
+            questionCard.appendChild(toggleButton);
+            questionCard.appendChild(answerForm);
+
+            const answersContainer = document.createElement('div');
+            answersContainer.className = 'space-y-4 hidden';
+            questionCard.appendChild(answersContainer);
+
+            questionsList.appendChild(questionCard);
+            previewContainer.innerHTML = '';
+            previewURL = '';
+            recordingType = '';
+        }
+
+        function submitAnswer(container) {
+            if (previewURL === '') return;
+
+            const answerCard = document.createElement('div');
+            answerCard.className = 'p-4 rounded-lg shadow-inner answer-card flex';
+
+            const profileImg = document.createElement('img');
+            profileImg.className = 'profile-img';
+            profileImg.src = 'https://via.placeholder.com/40';
+            profileImg.alt = 'Profile Image';
+
+            const answerContent = document.createElement('div');
+            answerContent.className = 'flex-1';
+            const name = document.createElement('span');
+            name.className = 'name';
+            name.innerText = 'اسم المستخدم';
+
+            answerContent.appendChild(name);
+
+            if (recordingType === 'audio') {
+                const audioElem = document.createElement('audio');
+                audioElem.controls = true;
+                audioElem.src = previewURL;
+                audioElem.className = 'audio-preview';
+                answerContent.appendChild(audioElem);
+            } else if (recordingType === 'video') {
+                const videoElem = document.createElement('video');
+                videoElem.controls = true;
+                videoElem.className = 'video-preview';
+                videoElem.src = previewURL;
+                answerContent.appendChild(videoElem);
+            }
+
+            answerCard.appendChild(profileImg);
+            answerCard.appendChild(answerContent);
+
+            container.appendChild(answerCard);
+            previewURL = '';
+            recordingType = '';
+        }
+
+        function toggleAnswers(container, button) {
+            if (container.classList.contains('hidden')) {
+                container.classList.remove('hidden');
+                button.innerText = 'إخفاء التعليقات';
+            } else {
+                container.classList.add('hidden');
+                button.innerText = 'عرض التعليقات';
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-10 text-right mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">خلها علينا</h3>
+                    <p>موقع يقدم خدمات متكاملة للسيدات في السعودية، يوفر الاستشارات، المقالات التعليمية، وخدمات الطوارئ.</p>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html" class="hover:text-yellow-400">الصفحة الرئيسية</a></li>
+                        <li><a href="#services" class="hover:text-yellow-400">الخدمات</a></li>
+                        <li><a href="#articles" class="hover:text-yellow-400">المقالات</a></li>
+                        <li><a href="#community" class="hover:text-yellow-400">المجتمع</a></li>
+                        <li><a href="#contact" class="hover:text-yellow-400">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">خدماتنا</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-yellow-400">استشارات فورية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مقالات تعليمية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مساعدة طارئة</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مجتمع افتراضي</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">حجز مواعيد</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">استشارات نصية أو صوتية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">خدمة عملاء</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">أسعار قطع غيار</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">تواصل معنا</h3>
+                    <ul>
+                        <li>Email: info@khilhalaina.com</li>
+                        <li>Phone: +966 123 456 789</li>
+                        <li>Address: Riyadh, Saudi Arabia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <p>&copy; 2024 خلها علينا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مجتمع افتراضي - خلها علينا</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            direction: rtl;
+        }
+        .question-card {
+            border-right: 4px solid #3b82f6; /* Blue border */
+            position: relative;
+        }
+        .answer-card {
+            border-right: 4px solid #60a5fa; /* Light blue border */
+            margin-right: 2rem; /* Indent answers */
+            font-size: 0.875rem; /* Smaller font size */
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+        }
+        .name {
+            font-weight: bold;
+            color: #1e40af; /* Dark Blue */
+        }
+        .toggle-button {
+            cursor: pointer;
+            color: #3b82f6; /* Blue */
+            font-size: 0.875rem; /* Smaller font size */
+        }
+        .media-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .media-controls button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+        }
+        .media-preview {
+            margin-bottom: 1rem;
+        }
+        .recording-indicator {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+    </style>
+    
+</head>
+<body class="bg-blue-100">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="text-blue-500 text-2xl font-bold">Logo</div>
+            <div class="hidden md:flex space-x-4">
+                <a href="index.html" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="virtual_community.html" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            </div>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded hidden md:block">ابدأ الآن</button>
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-blue-500 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="menu" class="hidden md:hidden">
+            <a href="index.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="virtual_community.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+        </div>
+    </nav>
+
+    <style>
+        body {
+            direction: rtl;
+        }
+        .question-card {
+            border-right: 4px solid #3b82f6;
+            position: relative;
+        }
+        .answer-card {
+            border-right: 4px solid #60a5fa;
+            margin-right: 2rem;
+            font-size: 0.875rem;
+            background-color: #f3f4f6;
+        }
+        .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-left: 0.5rem;
+        }
+        .name {
+            font-weight: bold;
+            color: #1e40af;
+        }
+        .toggle-button {
+            cursor: pointer;
+            color: #3b82f6;
+            font-size: 0.875rem;
+        }
+        .media-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .media-controls button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            border: none;
+            cursor: pointer;
+        }
+        .media-preview {
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        .media-preview video, .media-preview audio {
+            width: 200px;
+            height: 200px;
+        }
+        .fullscreen-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .recording-indicator {
+            color: red;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        .fixed-bottom {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-blue-100">
+
+    <!-- Hero Section -->
+    <section class="bg-blue-200 py-20 pt-32" style="background-image: url('images/hero.png'); background-size: cover; background-position: center;">
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h1 class="text-4xl font-bold text-white mb-4">المجتمع الافتراضي</h1>
+            <p class="text-lg text-white mb-8">محادثة مجتمع افتراضي لتبادل الخبرات والنصائح بين السائقين.</p>
+        </div>
+    </section>
+
+    <!-- Community Section -->
+    <section class="container mx-auto px-4 py-20">
+        <h2 class="text-3xl font-bold text-blue-900 text-center mb-12">طرح الأسئلة والمشاركة</h2>
+        <div id="questionsList" class="space-y-8">
+            <!-- Questions will be dynamically added here -->
+        </div>
+        <div class="fixed-bottom">
+            <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
+                <h3 class="text-2xl font-bold text-blue-900 mb-4">اكتب سؤالك</h3>
+                <form id="questionForm">
+                    <div class="mb-4">
+                        <label class="block text-blue-900 text-sm font-bold mb-2" for="question">
+                            السؤال
+                        </label>
+                        <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-blue-900 leading-tight focus:outline-none focus:shadow-outline" id="question" rows="4" placeholder="اكتب سؤالك هنا"></textarea>
+                    </div>
+                    <div class="media-controls">
+                        <button type="button" id="startAudioRecording"><i class="fas fa-microphone"></i></button>
+                        <button type="button" id="startVideoRecording"><i class="fas fa-video"></i></button>
+                        <button type="button" id="stopRecording" class="bg-yellow-500 text-white px-4 py-2 rounded">إيقاف</button>
+                    </div>
+                    <div id="recordingIndicator" class="recording-indicator hidden">جارٍ التسجيل...</div>
+                    <div class="media-preview" id="questionMediaPreview"></div>
+                    <div id="previewControls" class="hidden">
+                        <button type="button" id="sendMedia" class="bg-green-500 text-white px-4 py-2 rounded">إرسال</button>
+                        <button type="button" id="cancelMedia" class="bg-red-500 text-white px-4 py-2 rounded">إلغاء</button>
+                    </div>
+                    <button class="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button" id="submitQuestion">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let mediaRecorder;
+        let mediaChunks = [];
+        let mediaType;
+        let mediaBlobUrl;
+        let stream;
+        let currentAnswerMediaPreview;
+
+        const questionsList = document.getElementById('questionsList');
+        const questionMediaPreview = document.getElementById('questionMediaPreview');
+        const recordingIndicator = document.getElementById('recordingIndicator');
+        const previewControls = document.getElementById('previewControls');
+
+        function startRecording(type, context = 'question') {
+            mediaType = type;
+            const constraints = { audio: true, video: type === 'video' };
+            navigator.mediaDevices.getUserMedia(constraints)
+                .then(s => {
+                    stream = s;
+                    mediaRecorder = new MediaRecorder(stream);
+                    mediaRecorder.ondataavailable = event => {
+                        mediaChunks.push(event.data);
+                    };
+                    mediaRecorder.onstop = () => {
+                        const blob = new Blob(mediaChunks, { type: mediaRecorder.mimeType });
+                        mediaBlobUrl = URL.createObjectURL(blob);
+                        mediaChunks = [];
+                        let mediaElem;
+
+                        if (type === 'audio') {
+                            mediaElem = document.createElement('audio');
+                            mediaElem.controls = true;
+                            mediaElem.src = mediaBlobUrl;
+                        } else if (type === 'video') {
+                            mediaElem = document.createElement('video');
+                            mediaElem.controls = true;
+                            mediaElem.src = mediaBlobUrl;
+                        }
+
+                        if (context === 'question') {
+                            questionMediaPreview.innerHTML = '';
+                            questionMediaPreview.appendChild(mediaElem);
+                            previewControls.classList.remove('hidden');
+                        } else {
+                            currentAnswerMediaPreview.innerHTML = '';
+                            currentAnswerMediaPreview.appendChild(mediaElem);
+                            currentAnswerMediaPreview.parentElement.querySelector('.answer-preview-controls').classList.remove('hidden');
+                        }
+                        recordingIndicator.classList.add('hidden');
+                    };
+
+                    mediaRecorder.start();
+                    recordingIndicator.classList.remove('hidden');
+
+                    if (type === 'video') {
+                        const videoPreview = document.createElement('video');
+                        videoPreview.srcObject = stream;
+                        videoPreview.play();
+                        videoPreview.width = 200;
+                        videoPreview.height = 200;
+                        const fullscreenButton = document.createElement('button');
+                        fullscreenButton.className = 'fullscreen-button';
+                        fullscreenButton.innerText = 'شاشة كاملة';
+                        fullscreenButton.onclick = () => videoPreview.requestFullscreen();
+
+                        if (context === 'question') {
+                            questionMediaPreview.innerHTML = '';
+                            questionMediaPreview.appendChild(videoPreview);
+                            questionMediaPreview.appendChild(fullscreenButton);
+                        } else {
+                            currentAnswerMediaPreview.innerHTML = '';
+                            currentAnswerMediaPreview.appendChild(videoPreview);
+                            currentAnswerMediaPreview.appendChild(fullscreenButton);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Error accessing media devices.', error);
+                });
+        }
+
+        function stopRecording() {
+            if (mediaRecorder) {
+                mediaRecorder.stop();
+                stream.getTracks().forEach(track => track.stop());
+                recordingIndicator.classList.add('hidden');
+            }
+        }
+
+        function sendMedia(context = 'question') {
+            if (context === 'question') {
+                submitQuestion();
+            } else {
+                submitAnswerMedia(currentAnswerMediaPreview);
+            }
+        }
+
+        function cancelMedia() {
+            questionMediaPreview.innerHTML = '';
+            previewControls.classList.add('hidden');
+            if (currentAnswerMediaPreview) {
+                currentAnswerMediaPreview.innerHTML = '';
+                currentAnswerMediaPreview.parentElement.querySelector('.answer-preview-controls').classList.add('hidden');
+            }
+        }
+
+        function submitQuestion() {
+            const questionText = document.getElementById('question').value;
+            if (questionText.trim() === '' && questionMediaPreview.innerHTML === '') return;
+
+            const questionCard = document.createElement('div');
+            questionCard.className = 'bg-white p-6 rounded-lg shadow-lg question-card';
+
+            const profileImg = document.createElement('img');
+            profileImg.className = 'profile-img';
+            profileImg.src = 'https://via.placeholder.com/40';
+            profileImg.alt = 'Profile Image';
+
+            const questionContent = document.createElement('div');
+            questionContent.className = 'flex-1';
+            const name = document.createElement('span');
+            name.className = 'name';
+            name.innerText = 'اسم المستخدم';
+            const questionTextElem = document.createElement('p');
+            questionTextElem.className = 'text-blue-700 mb-4';
+            questionTextElem.innerText = questionText;
+
+            const toggleButton = document.createElement('span');
+            toggleButton.className = 'toggle-button';
+            toggleButton.innerText = 'عرض الردود';
+            toggleButton.onclick = () => {
+                const answersContainer = toggleButton.nextElementSibling;
+                answersContainer.classList.toggle('hidden');
+                toggleButton.innerText = answersContainer.classList.contains('hidden') ? 'عرض الردود' : 'إخفاء الردود';
+            };
+
+            const answerForm = createAnswerForm();
+            const answersContainer = document.createElement('div');
+            answersContainer.className = 'answers-container space-y-4 hidden';
+
+            questionContent.appendChild(name);
+            questionContent.appendChild(questionTextElem);
+            if (questionMediaPreview.innerHTML !== '') {
+                questionContent.appendChild(questionMediaPreview.cloneNode(true));
+            }
+
+            questionCard.appendChild(profileImg);
+            questionCard.appendChild(questionContent);
+            questionCard.appendChild(toggleButton);
+            questionCard.appendChild(answersContainer);
+            questionCard.appendChild(answerForm);
+            questionsList.appendChild(questionCard);
+
+            document.getElementById('question').value = '';
+            questionMediaPreview.innerHTML = '';
+            previewControls.classList.add('hidden');
+        }
+
+        function createAnswerForm() {
+            const answerForm = document.createElement('form');
+            answerForm.className = 'mb-4 flex';
+
+            const answerTextarea = document.createElement('textarea');
+            answerTextarea.className = 'shadow appearance-none border rounded w-full py-2 px-3 text-blue-900 leading-tight focus:outline-none focus:shadow-outline';
+            answerTextarea.rows = 2;
+            answerTextarea.placeholder = 'اكتب ردك هنا';
+
+            const answerButton = document.createElement('button');
+            answerButton.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 ml-2';
+            answerButton.type = 'button';
+            answerButton.innerHTML = '<i class="fas fa-paper-plane"></i>';
+            answerButton.onclick = () => {
+                submitAnswer(answerTextarea, answerMediaPreview);
+            };
+
+            const answerAudioButton = document.createElement('button');
+            answerAudioButton.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 ml-2';
+            answerAudioButton.type = 'button';
+            answerAudioButton.innerHTML = '<i class="fas fa-microphone"></i>';
+            answerAudioButton.onclick = () => {
+                currentAnswerMediaPreview = answerMediaPreview;
+                startRecording('audio', 'answer');
+            };
+
+            const answerVideoButton = document.createElement('button');
+            answerVideoButton.className = 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-2 ml-2';
+            answerVideoButton.type = 'button';
+            answerVideoButton.innerHTML = '<i class="fas fa-video"></i>';
+            answerVideoButton.onclick = () => {
+                currentAnswerMediaPreview = answerMediaPreview;
+                startRecording('video', 'answer');
+            };
+
+            const stopAnswerRecordingButton = document.createElement('button');
+            stopAnswerRecordingButton.className = 'bg-yellow-500 text-white px-4 py-2 rounded focus:outline-none focus:shadow-outline mt-2 ml-2';
+            stopAnswerRecordingButton.type = 'button';
+            stopAnswerRecordingButton.innerHTML = 'إيقاف';
+            stopAnswerRecordingButton.onclick = stopRecording;
+
+            const answerMediaPreview = document.createElement('div');
+            answerMediaPreview.className = 'media-preview';
+
+            const previewAnswerControls = document.createElement('div');
+            previewAnswerControls.className = 'answer-preview-controls hidden';
+            const sendAnswerButton = document.createElement('button');
+            sendAnswerButton.className = 'bg-green-500 text-white px-4 py-2 rounded';
+            sendAnswerButton.type = 'button';
+            sendAnswerButton.innerHTML = 'إرسال';
+            sendAnswerButton.onclick = () => {
+                submitAnswerMedia(answerMediaPreview);
+            };
+
+            const cancelAnswerButton = document.createElement('button');
+            cancelAnswerButton.className = 'bg-red-500 text-white px-4 py-2 rounded';
+            cancelAnswerButton.type = 'button';
+            cancelAnswerButton.innerHTML = 'إلغاء';
+            cancelAnswerButton.onclick = cancelMedia;
+
+            previewAnswerControls.appendChild(sendAnswerButton);
+            previewAnswerControls.appendChild(cancelAnswerButton);
+            answerForm.appendChild(answerTextarea);
+            answerForm.appendChild(answerButton);
+            answerForm.appendChild(answerAudioButton);
+            answerForm.appendChild(answerVideoButton);
+            answerForm.appendChild(stopAnswerRecordingButton);
+            answerForm.appendChild(answerMediaPreview);
+            answerForm.appendChild(previewAnswerControls);
+
+            return answerForm;
+        }
+
+        function submitAnswer(textarea, mediaPreview) {
+            const answerText = textarea.value;
+            if (answerText.trim() === '' && mediaPreview.innerHTML === '') return;
+
+            const answerCard = document.createElement('div');
+            answerCard.className = 'p-4 rounded-lg shadow-inner answer-card flex';
+
+            const profileImg = document.createElement('img');
+            profileImg.className = 'profile-img';
+            profileImg.src = 'https://via.placeholder.com/40';
+            profileImg.alt = 'Profile Image';
+
+            const answerContent = document.createElement('div');
+            answerContent.className = 'flex-1';
+            const name = document.createElement('span');
+            name.className = 'name';
+            name.innerText = 'اسم المستخدم';
+            const answerTextElem = document.createElement('p');
+            answerTextElem.className = 'text-blue-700';
+            answerTextElem.innerText = answerText;
+
+            answerContent.appendChild(name);
+            answerContent.appendChild(answerTextElem);
+            if (mediaPreview.innerHTML !== '') {
+                answerContent.appendChild(mediaPreview.cloneNode(true));
+            }
+
+            answerCard.appendChild(profileImg);
+            answerCard.appendChild(answerContent);
+            mediaPreview.parentElement.parentElement.appendChild(answerCard);
+
+            textarea.value = '';
+            mediaPreview.innerHTML = '';
+            mediaPreview.parentElement.querySelector('.answer-preview-controls').classList.add('hidden');
+        }
+
+        function submitAnswerMedia(mediaPreview) {
+            const answerCard = document.createElement('div');
+            answerCard.className = 'p-4 rounded-lg shadow-inner answer-card flex';
+
+            const profileImg = document.createElement('img');
+            profileImg.className = 'profile-img';
+            profileImg.src = 'https://via.placeholder.com/40';
+            profileImg.alt = 'Profile Image';
+
+            const answerContent = document.createElement('div');
+            answerContent.className = 'flex-1';
+            const name = document.createElement('span');
+            name.className = 'name';
+            name.innerText = 'اسم المستخدم';
+
+            const mediaElem = mediaPreview.cloneNode(true);
+            answerContent.appendChild(name);
+            answerContent.appendChild(mediaElem);
+
+            answerCard.appendChild(profileImg);
+            answerCard.appendChild(answerContent);
+            mediaPreview.parentElement.parentElement.appendChild(answerCard);
+
+            mediaPreview.innerHTML = '';
+            mediaPreview.parentElement.querySelector('.answer-preview-controls').classList.add('hidden');
+        }
+
+        document.getElementById('startAudioRecording').onclick = () => {
+            startRecording('audio');
+        };
+
+        document.getElementById('startVideoRecording').onclick = () => {
+            startRecording('video');
+        };
+
+        document.getElementById('stopRecording').onclick = stopRecording;
+
+        document.getElementById('sendMedia').onclick = () => {
+            sendMedia('question');
+        };
+
+        document.getElementById('cancelMedia').onclick = cancelMedia;
+
+        document.getElementById('submitQuestion').onclick = submitQuestion;
+    </script>
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-10 text-right mt-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">خلها علينا</h3>
+                    <p>موقع يقدم خدمات متكاملة للسيدات في السعودية، يوفر الاستشارات، المقالات التعليمية، وخدمات الطوارئ.</p>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+                    <ul>
+                        <li><a href="index.html" class="hover:text-yellow-400">الصفحة الرئيسية</a></li>
+                        <li><a href="#services" class="hover:text-yellow-400">الخدمات</a></li>
+                        <li><a href="#articles" class="hover:text-yellow-400">المقالات</a></li>
+                        <li><a href="#community" class="hover:text-yellow-400">المجتمع</a></li>
+                        <li><a href="#contact" class="hover:text-yellow-400">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">خدماتنا</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-yellow-400">استشارات فورية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مقالات تعليمية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مساعدة طارئة</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مجتمع افتراضي</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">حجز مواعيد</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">استشارات نصية أو صوتية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">خدمة عملاء</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">أسعار قطع غيار</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">تواصل معنا</h3>
+                    <ul>
+                        <li>Email: info@khilhalaina.com</li>
+                        <li>Phone: +966 123 456 789</li>
+                        <li>Address: Riyadh, Saudi Arabia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <p>&copy; 2024 خلها علينا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const menu = document.getElementById('menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+
+</body>
+</html>

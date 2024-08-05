@@ -6,51 +6,41 @@
     <title>المقالات التعليمية</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        body {
-            direction: rtl;
+        .carousel-container {
+            overflow: hidden;
         }
-        .article-list-item {
-            cursor: pointer;
-            transition: background-color 0.3s, padding-left 0.3s;
-            padding-left: 1rem;
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
         }
-        .article-list-item:hover {
-            background-color: #f1f1f1;
-            padding-left: 1.5rem;
+
+        .carousel-item {
+            min-width: 33.3333%;
+            box-sizing: border-box;
         }
-        .article-content {
-            display: none;
+
+        .article-details img {
+            width: 200px;
         }
     </style>
-    <script>
-        function showArticle(articleId) {
-            document.querySelectorAll('.article-content').forEach(content => {
-                content.style.display = 'none';
-            });
-            document.getElementById(articleId).style.display = 'block';
-        }
-    </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
-
-    <!-- Navbar -->
+<body class="bg-gray-100 text-gray-900" dir="rtl">
     <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-blue-500 text-base font-bold flex justify-center items-end">
-                <img src="logo.png" width="80px" alt="">
-                <span>خلها علينا</span>
+            <div class="text-blue-900 text-base font-bold flex justify-center items-end "> 
+                <img src="images/logo.svg" width="100px"  alt="">
+                <span class="px-4 text-2xl">   </span> 
             </div>
             <div class="hidden md:flex space-x-4">
-                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
-                <a href="#services" class="text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
-                <a href="#articles" class="text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
-                <a href="#community" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
-                <a href="#contact" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700 px-4" ><i class="fas fa-concierge-bell"></i> الخدمات</a>
+                <a href="blog.html" class="text-blue-900 hover:text-blue-700 px-4" ><i class="fas fa-newspaper"></i> المقالات</a>
+                <a href="workshop.html" class="text-blue-900 hover:text-blue-700  px-4"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="#footer" class="text-blue-900 hover:text-blue-700  px-4"><i class="fas fa-envelope"></i> تواصل معنا</a>
             </div>
-            <button class="bg-yellow-400  hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-blue-500 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -60,82 +50,197 @@
             </div>
         </div>
         <div id="menu" class="hidden md:hidden">
-            <a href="#" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
-            <a href="#services" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
-            <a href="#articles" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
-            <a href="#community" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
-            <a href="#contact" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
+            <a href="index.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="index.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+            <a href="blog.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+            <a href="community.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="#footer" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            <button class="bg-yellow-400 hover:bg-yellow-900 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
         </div>
     </nav>
 
-    <!-- Main content -->
-    <main class="container mx-auto p-4 mt-16">
+    <main class="container mx-auto p-4 mt-24">
         <section class="text-center bg-white p-10 rounded-lg shadow-lg my-8">
             <h1 class="text-4xl font-bold mb-6 text-blue-700">المقالات التعليمية</h1>
             <p class="mb-6 text-lg text-blue-700">اكتشف مقالاتنا التعليمية المتنوعة حول صيانة السيارات وإصلاح الأعطال.</p>
         </section>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Articles List -->
-            <div class="bg-white p-4 rounded-lg shadow-md">
-                <h2 class="text-2xl font-bold mb-4 text-blue-700">قائمة المقالات</h2>
-                <ul class="space-y-4">
-                    <li class="article-list-item text-blue-700 hover:text-blue-900 hover:bg-blue-400 py-2 bg-blue-200 px-1 rounded" onclick="showArticle('article1')">كيفية تغيير زيت المحرك</li>
-                    <li class="article-list-item text-blue-700 hover:text-blue-900 hover:bg-blue-400 py-2 bg-blue-200 px-1 rounded" onclick="showArticle('article2')">نصائح للحفاظ على إطارات السيارة</li>
-                    <li class="article-list-item text-blue-700 hover:text-blue-900 hover:bg-blue-400 py-2 bg-blue-200 px-1 rounded" onclick="showArticle('article3')">كيفية تشخيص مشاكل البطارية</li>
-                    <!-- Add more articles as needed -->
-                </ul>
+        <!-- Slider -->
+        <div class="carousel-container relative">
+            <div class="carousel-inner">
+                <div class="carousel-item p-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center" onclick="showArticle('article1')">
+                        <img src="images/artical1.png" alt="كيفية تغيير زيت المحرك" class="rounded-lg mb-4 w-full">
+                        <h2 class="text-2xl font-bold text-blue-700">كيفية تغيير زيت المحرك</h2>
+                        <p class="text-gray-500">2024-08-01</p>
+                        <p class="text-gray-700">تغيير زيت المحرك هو جزء أساسي من صيانة السيارة...</p>
+                    </div>
+                </div>
+                <div class="carousel-item p-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center" onclick="showArticle('article2')">
+                        <img src="images/artical2.png" alt="نصائح للحفاظ على إطارات السيارة" class="rounded-lg mb-4 w-full">
+                        <h2 class="text-2xl font-bold text-blue-700">نصائح للحفاظ على إطارات السيارة</h2>
+                        <p class="text-gray-500">2024-08-02</p>
+                        <p class="text-gray-700">الإطارات هي أحد أهم أجزاء السيارة...</p>
+                    </div>
+                </div>
+                <div class="carousel-item p-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center" onclick="showArticle('article3')">
+                        <img src="images/artical3.png" alt="كيفية تشخيص مشاكل البطارية" class="rounded-lg mb-4 w-full">
+                        <h2 class="text-2xl font-bold text-blue-700">كيفية تشخيص مشاكل البطارية</h2>
+                        <p class="text-gray-500">2024-08-03</p>
+                        <p class="text-gray-700">إذا كانت سيارتك تعاني من مشاكل في البطارية...</p>
+                    </div>
+                </div>
+                <div class="carousel-item p-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center" onclick="showArticle('article4')">
+                        <img src="images/artical4.png" alt="كيفية تغيير فلتر الهواء" class="rounded-lg mb-4 w-full">
+                        <h2 class="text-2xl font-bold text-blue-700">كيفية تغيير فلتر الهواء</h2>
+                        <p class="text-gray-500">2024-08-04</p>
+                        <p class="text-gray-700">تغيير فلتر الهواء يمكن أن يحسن أداء سيارتك...</p>
+                    </div>
+                </div>
+                <div class="carousel-item p-4">
+                    <div class="bg-white rounded-lg shadow-md p-4 text-center" onclick="showArticle('article5')">
+                        <img src="images/artical5.png" alt="كيفية تنظيف مقاعد السيارة" class="rounded-lg mb-4 w-full">
+                        <h2 class="text-2xl font-bold text-blue-700">كيفية تنظيف مقاعد السيارة</h2>
+                        <p class="text-gray-500">2024-08-05</p>
+                        <p class="text-gray-700">تنظيف مقاعد السيارة يحافظ على مظهرها ويزيد من عمرها...</p>
+                    </div>
+                </div>
             </div>
+            <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-blue-700 text-white px-3 py-1 rounded-l" onclick="prevSlide()">&#10094;</button>
+            <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-blue-700 text-white px-3 py-1 rounded-r" onclick="nextSlide()">&#10095;</button>
+        </div>
 
-            <!-- Article Content -->
-            <div class="bg-white p-4 rounded-lg shadow-md md:col-span-2">
-                <div id="article1" class="article-content ">
-                    <img src="https://via.placeholder.com/600x400" alt="كيفية تغيير زيت المحرك" class="rounded-lg mb-4 w-full">
-                    <h2 class="text-3xl font-bold mb-4 text-blue-700">كيفية تغيير زيت المحرك</h2>
-                    <p class="text-gray-700 mb-4">تغيير زيت المحرك هو جزء أساسي من صيانة السيارة. في هذا المقال، سنتعلم كيفية تغيير زيت المحرك خطوة بخطوة لضمان أداء مثالي ومحافظة على المحرك.</p>
-                    <p class="text-gray-700 mb-4">أولاً، تحتاج إلى تحضير الأدوات اللازمة: وعاء لتجميع الزيت القديم، مفتاح لفك فلتر الزيت، فلتر زيت جديد، وزيت محرك جديد. تأكد من أن السيارة باردة قبل البدء.</p>
-                    <p class="text-gray-700 mb-4">ثانياً، ارفع السيارة باستخدام الرافعة وتأكد من ثباتها. ضع الوعاء تحت محرك السيارة وافتح صمام تصريف الزيت باستخدام المفتاح المناسب. دع الزيت القديم يتدفق بالكامل.</p>
-                    <p class="text-gray-700 mb-4">ثالثاً، بعد تصريف الزيت، قم بفك فلتر الزيت القديم واستبدله بالجديد. ضع القليل من الزيت الجديد على حافة الفلتر الجديد قبل تركيبه لضمان إحكامه.</p>
-                    <p class="text-gray-700 mb-4">أخيراً، اغلق صمام تصريف الزيت وأعد ملء المحرك بالزيت الجديد وفقاً للكمية الموصى بها في دليل المالك. تأكد من مستوى الزيت باستخدام مقياس الزيت.</p>
-                </div>
-                <div id="article2" class="article-content">
-                    <img src="https://via.placeholder.com/600x400" alt="نصائح للحفاظ على إطارات السيارة" class="rounded-lg mb-4">
-                    <h2 class="text-3xl font-bold mb-4 text-blue-700">نصائح للحفاظ على إطارات السيارة</h2>
-                    <p class="text-gray-700 mb-4">الإطارات هي أحد أهم أجزاء السيارة. في هذا المقال، سنقدم لك بعض النصائح للحفاظ على إطارات سيارتك بحالة جيدة لضمان السلامة والأداء المثالي.</p>
-                    <p class="text-gray-700 mb-4">أولاً، تأكد من فحص ضغط الهواء في الإطارات بانتظام. يجب أن يكون الضغط وفقًا للتوصيات الموجودة في دليل المالك أو الملصق الموجود على باب السائق.</p>
-                    <p class="text-gray-700 mb-4">ثانياً، تحقق من تآكل الإطارات بانتظام. إذا لاحظت أن الإطارات تتآكل بشكل غير متساوٍ، فقد يكون ذلك مؤشرًا على مشكلة في التوازن أو المحاذاة.</p>
-                    <p class="text-gray-700 mb-4">ثالثاً، قم بتدوير الإطارات بانتظام لضمان تآكل متساوٍ. يُفضل تدوير الإطارات كل 10,000 كيلومتر أو حسب توصيات الشركة المصنعة.</p>
-                    <p class="text-gray-700 mb-4">أخيراً، تجنب الحمولة الزائدة والقيادة بسرعات عالية. الحمولة الزائدة تؤثر على توازن الإطارات، والقيادة بسرعات عالية تزيد من حرارة الإطارات وتآكلها بسرعة.</p>
-                </div>
-                <div id="article3" class="article-content">
-                    <img src="https://via.placeholder.com/600x400" alt="كيفية تشخيص مشاكل البطارية" class="rounded-lg mb-4">
-                    <h2 class="text-3xl font-bold mb-4 text-blue-700">كيفية تشخيص مشاكل البطارية</h2>
-                    <p class="text-gray-700 mb-4">إذا كانت سيارتك تعاني من مشاكل في البطارية، في هذا المقال سنشرح كيفية تشخيص هذه المشاكل وما يمكن فعله لحلها لضمان عدم تعطل السيارة.</p>
-                    <p class="text-gray-700 mb-4">أولاً، تأكد من نظافة وصلات البطارية. تراكم الأوساخ والصدأ على الوصلات يمكن أن يعيق انتقال الكهرباء. استخدم فرشاة سلكية لتنظيف الوصلات.</p>
-                    <p class="text-gray-700 mb-4">ثانياً، تحقق من شحن البطارية باستخدام جهاز فحص البطارية. إذا كانت القراءة أقل من 12.4 فولت، فهذا يعني أن البطارية بحاجة إلى الشحن.</p>
-                    <p class="text-gray-700 mb-4">ثالثاً، افحص حزام المولد للتأكد من عدم وجود تشققات أو تآكل. حزام المولد هو المسؤول عن شحن البطارية أثناء تشغيل المحرك.</p>
-                    <p class="text-gray-700 mb-4">أخيراً، إذا كانت البطارية قديمة (أكثر من 3 سنوات)، فقد تكون بحاجة إلى استبدالها. تأكد من اختيار بطارية متوافقة مع مواصفات سيارتك.</p>
-                </div>
-                <!-- Add more article contents as needed -->
+        <!-- Article Content -->
+        <div class="bg-white p-4 rounded-lg shadow-md mt-8 article-details" dir="rtl">
+            <div id="article1" class="article-content">
+                <img src="images/artical1.png" alt="كيفية تغيير زيت المحرك" class="rounded-lg mb-4">
+                <h2 class="text-3xl font-bold mb-2 text-blue-700">كيفية تغيير زيت المحرك</h2>
+                <p class="text-gray-500 mb-4">2024-08-01</p>
+                <p class="text-gray-700 mb-4">تغيير زيت المحرك هو جزء أساسي من صيانة السيارة. في هذا المقال، سنتعلم كيفية تغيير زيت المحرك خطوة بخطوة لضمان أداء مثالي ومحافظة على المحرك.</p>
+                <p class="text-gray-700 mb-4">أولاً، تحتاج إلى تحضير الأدوات اللازمة: وعاء لتجميع الزيت القديم، مفتاح لفك فلتر الزيت، فلتر زيت جديد، وزيت محرك جديد. تأكد من أن السيارة باردة قبل البدء.</p>
+                <p class="text-gray-700 mb-4">ثانياً، ارفع السيارة باستخدام الرافعة وتأكد من ثباتها. ضع الوعاء تحت محرك السيارة وافتح صمام تصريف الزيت باستخدام المفتاح المناسب. دع الزيت القديم يتدفق بالكامل.</p>
+                <p class="text-gray-700 mb-4">ثالثاً، بعد تصريف الزيت، قم بفك فلتر الزيت القديم واستبدله بالجديد. ضع القليل من الزيت الجديد على حافة الفلتر الجديد قبل تركيبه لضمان إحكامه.</p>
+                <p class="text-gray-700 mb-4">أخيراً، اغلق صمام تصريف الزيت وأعد ملء المحرك بالزيت الجديد وفقاً للكمية الموصى بها في دليل المالك. تأكد من مستوى الزيت باستخدام مقياس الزيت.</p>
+            </div>
+            <div id="article2" class="article-content hidden">
+                <img src="images/artical2.png" alt="نصائح للحفاظ على إطارات السيارة" class="rounded-lg mb-4">
+                <h2 class="text-3xl font-bold mb-2 text-blue-700">نصائح للحفاظ على إطارات السيارة</h2>
+                <p class="text-gray-500 mb-4">2024-08-02</p>
+                <p class="text-gray-700 mb-4">الإطارات هي أحد أهم أجزاء السيارة. في هذا المقال، سنقدم لك بعض النصائح للحفاظ على إطارات سيارتك بحالة جيدة لضمان السلامة والأداء المثالي.</p>
+                <p class="text-gray-700 mb-4">أولاً، تأكد من فحص ضغط الهواء في الإطارات بانتظام. يجب أن يكون الضغط وفقًا للتوصيات الموجودة في دليل المالك أو الملصق الموجود على باب السائق.</p>
+                <p class="text-gray-700 mb-4">ثانياً، تحقق من تآكل الإطارات بانتظام. إذا لاحظت أن الإطارات تتآكل بشكل غير متساوٍ، فقد يكون ذلك مؤشرًا على مشكلة في التوازن أو المحاذاة.</p>
+                <p class="text-gray-700 mb-4">ثالثاً، قم بتدوير الإطارات بانتظام لضمان تآكل متساوٍ. يُفضل تدوير الإطارات كل 10,000 كيلومتر أو حسب توصيات الشركة المصنعة.</p>
+                <p class="text-gray-700 mb-4">أخيراً، تجنب الحمولة الزائدة والقيادة بسرعات عالية. الحمولة الزائدة تؤثر على توازن الإطارات، والقيادة بسرعات عالية تزيد من حرارة الإطارات وتآكلها بسرعة.</p>
+            </div>
+            <div id="article3" class="article-content hidden">
+                <img src="images/artical3.png" alt="كيفية تشخيص مشاكل البطارية" class="rounded-lg mb-4">
+                <h2 class="text-3xl font-bold mb-2 text-blue-700">كيفية تشخيص مشاكل البطارية</h2>
+                <p class="text-gray-500 mb-4">2024-08-03</p>
+                <p class="text-gray-700 mb-4">إذا كانت سيارتك تعاني من مشاكل في البطارية، في هذا المقال سنشرح كيفية تشخيص هذه المشاكل وما يمكن فعله لحلها لضمان عدم تعطل السيارة.</p>
+                <p class="text-gray-700 mb-4">أولاً، تأكد من نظافة وصلات البطارية. تراكم الأوساخ والصدأ على الوصلات يمكن أن يعيق انتقال الكهرباء. استخدم فرشاة سلكية لتنظيف الوصلات.</p>
+                <p class="text-gray-700 mb-4">ثانياً، تحقق من شحن البطارية باستخدام جهاز فحص البطارية. إذا كانت القراءة أقل من 12.4 فولت، فهذا يعني أن البطارية بحاجة إلى الشحن.</p>
+                <p class="text-gray-700 mb-4">ثالثاً، افحص حزام المولد للتأكد من عدم وجود تشققات أو تآكل. حزام المولد هو المسؤول عن شحن البطارية أثناء تشغيل المحرك.</p>
+                <p class="text-gray-700 mb-4">أخيراً، إذا كانت البطارية قديمة (أكثر من 3 سنوات)، فقد تكون بحاجة إلى استبدالها. تأكد من اختيار بطارية متوافقة مع مواصفات سيارتك.</p>
+            </div>
+            <div id="article4" class="article-content hidden">
+                <img src="images/artical4.png" alt="كيفية تغيير فلتر الهواء" class="rounded-lg mb-4">
+                <h2 class="text-3xl font-bold mb-2 text-blue-700">كيفية تغيير فلتر الهواء</h2>
+                <p class="text-gray-500 mb-4">2024-08-04</p>
+                <p class="text-gray-700 mb-4">تغيير فلتر الهواء يمكن أن يحسن أداء سيارتك بشكل ملحوظ. في هذا المقال، سنوضح لك كيفية تغيير فلتر الهواء بسهولة وسرعة.</p>
+                <p class="text-gray-700 mb-4">أولاً، حدد موقع فلتر الهواء في سيارتك. عادةً ما يكون في صندوق تحت غطاء المحرك. استخدم دليل المالك إذا كنت تواجه صعوبة في العثور عليه.</p>
+                <p class="text-gray-700 mb-4">ثانياً، افتح الصندوق وأخرج الفلتر القديم. لاحظ كيف يتم وضع الفلتر لتتمكن من وضع الفلتر الجديد بنفس الطريقة.</p>
+                <p class="text-gray-700 mb-4">ثالثاً، ضع الفلتر الجديد في مكانه وأغلق الصندوق بإحكام. تأكد من عدم ترك أي فجوات.</p>
+                <p class="text-gray-700 mb-4">أخيراً، قم بتسجيل تاريخ تغيير الفلتر في دفتر صيانة السيارة لتتمكن من متابعة مواعيد التغييرات المستقبلية.</p>
+            </div>
+            <div id="article5" class="article-content hidden">
+                <img src="images/artical5.png" alt="كيفية تنظيف مقاعد السيارة" class="rounded-lg mb-4">
+                <h2 class="text-3xl font-bold mb-2 text-blue-700">كيفية تنظيف مقاعد السيارة</h2>
+                <p class="text-gray-500 mb-4">2024-08-05</p>
+                <p class="text-gray-700 mb-4">تنظيف مقاعد السيارة يحافظ على مظهرها ويزيد من عمرها. في هذا المقال، سنعرض لك خطوات بسيطة لتنظيف مقاعد سيارتك بفعالية.</p>
+                <p class="text-gray-700 mb-4">أولاً، قم بإزالة الأوساخ السطحية باستخدام مكنسة كهربائية. تأكد من الوصول إلى الزوايا والشقوق.</p>
+                <p class="text-gray-700 mb-4">ثانياً، استخدم منظف مقاعد مناسب لنوع المادة. ضع المنظف على المقاعد واتركه لبضع دقائق ليعمل على تفتيت الأوساخ.</p>
+                <p class="text-gray-700 mb-4">ثالثاً، استخدم فرشاة ناعمة لفرك المقاعد بلطف. هذا يساعد على إزالة الأوساخ العميقة والبقع.</p>
+                <p class="text-gray-700 mb-4">أخيراً، استخدم قطعة قماش مبللة لمسح المقاعد وإزالة بقايا المنظف. اترك المقاعد تجف تماماً قبل استخدامها.</p>
             </div>
         </div>
     </main>
 
-    <footer class="bg-blue-700 text-white text-center p-4">
-        <p>جميع الحقوق محفوظة © 2024</p>
+    <footer class="bg-blue-900 text-white py-10 text-right">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-between">
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">خلها علينا</h3>
+                    <p>موقع يقدم خدمات متكاملة للسيدات في السعودية، يوفر الاستشارات، المقالات التعليمية، وخدمات الطوارئ.</p>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-yellow-400">الصفحة الرئيسية</a></li>
+                        <li><a href="#services" class="hover:text-yellow-400">الخدمات</a></li>
+                        <li><a href="#articles" class="hover:text-yellow-400">المقالات</a></li>
+                        <li><a href="#community" class="hover:text-yellow-400">المجتمع</a></li>
+                        <li><a href="#contact" class="hover:text-yellow-400">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">خدماتنا</h3>
+                    <ul>
+                        <li><a href="#" class="hover:text-yellow-400">استشارات فورية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مقالات تعليمية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مساعدة طارئة</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">مجتمع افتراضي</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">حجز مواعيد</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">استشارات نصية أو صوتية</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">خدمة عملاء</a></li>
+                        <li><a href="#" class="hover:text-yellow-400">أسعار قطع غيار</a></li>
+                    </ul>
+                </div>
+                <div class="w-full md:w-1/4 mb-6">
+                    <h3 class="text-lg font-bold mb-4">تواصل معنا</h3>
+                    <ul>
+                        <li>Email: info@khilhalaina.com</li>
+                        <li>Phone: +966 123 456 789</li>
+                        <li>Address: Riyadh, Saudi Arabia</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <p>&copy; 2024 خلها علينا. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
     </footer>
 
+
     <script>
+        let currentSlide = 0;
+
+        function showArticle(articleId) {
+            document.querySelectorAll('.article-content').forEach(article => {
+                article.classList.add('hidden');
+            });
+            document.getElementById(articleId).classList.remove('hidden');
+        }
+
+        function nextSlide() {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const totalItems = document.querySelectorAll('.carousel-item').length;
+            currentSlide = (currentSlide + 1) % Math.ceil(totalItems / 3);
+            carouselInner.style.transform = `translateX(-${currentSlide * 33.3333}%)`;
+        }
+
+        function prevSlide() {
+            const carouselInner = document.querySelector('.carousel-inner');
+            const totalItems = document.querySelectorAll('.carousel-item').length;
+            currentSlide = (currentSlide - 1 + Math.ceil(totalItems / 3)) % Math.ceil(totalItems / 3);
+            carouselInner.style.transform = `translateX(-${currentSlide * 33.3333}%)`;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
-            // Show the first article by default
             showArticle('article1');
         });
-
-        document.getElementById('menu-btn').addEventListener('click', () => {
-            document.getElementById('menu').classList.toggle('hidden');
-        });
     </script>
-    
 </body>
 </html>

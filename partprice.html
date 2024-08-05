@@ -6,6 +6,8 @@
     <title>أسعار قطع غيار السيارات</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
             direction: rtl;
@@ -30,16 +32,16 @@
     <!-- Navbar -->
     <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-blue-500 text-base font-bold flex justify-center items-end">
-                <img src="logo.png" width="80px" alt="">
-                <span>خلها علينا</span>
+            <div class="text-blue-900 text-base font-bold flex justify-center items-end "> 
+                <img src="images/logo.svg" width="100px"  alt="">
+                <span class="px-4 text-2xl">   </span> 
             </div>
             <div class="hidden md:flex space-x-4">
-                <a href="#" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
-                <a href="#services" class="text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
-                <a href="#articles" class="text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
-                <a href="#community" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
-                <a href="#contact" class="text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700 px-4" ><i class="fas fa-concierge-bell"></i> الخدمات</a>
+                <a href="blog.html" class="text-blue-900 hover:text-blue-700 px-4" ><i class="fas fa-newspaper"></i> المقالات</a>
+                <a href="workshop.html" class="text-blue-900 hover:text-blue-700  px-4"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="#footer" class="text-blue-900 hover:text-blue-700  px-4"><i class="fas fa-envelope"></i> تواصل معنا</a>
             </div>
             <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
             <div class="md:hidden">
@@ -51,12 +53,12 @@
             </div>
         </div>
         <div id="menu" class="hidden md:hidden">
-            <a href="#" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
-            <a href="#services" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
-            <a href="#articles" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
-            <a href="#community" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
-            <a href="#contact" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
+            <a href="index.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+            <a href="index.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+            <a href="blog.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+            <a href="community.html" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="#footer" class="block px-4 py-2 text-blue-900 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            <button class="bg-yellow-400 hover:bg-yellow-900 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
         </div>
     </nav>
 
@@ -71,42 +73,42 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Part Card 1 -->
                 <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
-                    <img src="https://via.placeholder.com/150" alt="فلتر زيت" class="rounded-lg w-24 mx-auto mb-4">
+                    <img src="images/part1.png" alt="فلتر زيت" class="rounded-lg w-full mb-4">
                     <h3 class="text-xl font-bold mb-2">فلتر زيت</h3>
                     <p class="text-gray-700 mb-4">فلتر الزيت يساعد في الحفاظ على نظافة الزيت وتحسين أداء المحرك.</p>
                     <div class="price-tag">50 ريال</div>
                 </div>
                 <!-- Part Card 2 -->
                 <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
-                    <img src="https://via.placeholder.com/150" alt="بطارية سيارة" class="rounded-lg w-24 mx-auto mb-4">
+                    <img src="images/part2.png" alt="بطارية سيارة" class="rounded-lg w-full mb-4">
                     <h3 class="text-xl font-bold mb-2">بطارية سيارة</h3>
                     <p class="text-gray-700 mb-4">بطارية عالية الأداء توفر طاقة موثوقة لسيارتك.</p>
                     <div class="price-tag">300 ريال</div>
                 </div>
                 <!-- Part Card 3 -->
                 <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
-                    <img src="https://via.placeholder.com/150" alt="إطار سيارة" class="rounded-lg w-24 mx-auto mb-4">
+                    <img src="images/part3.png" alt="إطار سيارة" class="rounded-lg w-full mb-4">
                     <h3 class="text-xl font-bold mb-2">إطار سيارة</h3>
                     <p class="text-gray-700 mb-4">إطار متين يوفر قيادة مريحة وآمنة على جميع الطرق.</p>
                     <div class="price-tag">200 ريال</div>
                 </div>
                 <!-- Part Card 4 -->
                 <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
-                    <img src="https://via.placeholder.com/150" alt="شمعات الإشعال" class="rounded-lg w-24 mx-auto mb-4">
+                    <img src="images/part4.png" alt="شمعات الإشعال" class="rounded-lg w-full mb-4">
                     <h3 class="text-xl font-bold mb-2">شمعات الإشعال</h3>
                     <p class="text-gray-700 mb-4">شمعات إشعال ذات جودة عالية لتحسين أداء المحرك.</p>
                     <div class="price-tag">80 ريال</div>
                 </div>
                 <!-- Part Card 5 -->
                 <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
-                    <img src="https://via.placeholder.com/150" alt="فلتر هواء" class="rounded-lg w-24 mx-auto mb-4">
+                    <img src="images/part5.png" alt="فلتر هواء" class="rounded-lg w-full mb-4">
                     <h3 class="text-xl font-bold mb-2">فلتر هواء</h3>
                     <p class="text-gray-700 mb-4">فلتر هواء عالي الأداء يضمن تدفق هواء نظيف إلى المحرك.</p>
                     <div class="price-tag">60 ريال</div>
                 </div>
                 <!-- Part Card 6 -->
                 <div class="part-card bg-gray-100 rounded-lg shadow-md p-6 text-center">
-                    <img src="https://via.placeholder.com/150" alt="مكابح" class="rounded-lg w-24 mx-auto mb-4">
+                    <img src="images/part6.png" alt="مكابح" class="rounded-lg w-full mb-4">
                     <h3 class="text-xl font-bold mb-2">مكابح</h3>
                     <p class="text-gray-700 mb-4">مكابح عالية الجودة لضمان سلامتك أثناء القيادة.</p>
                     <div class="price-tag">150 ريال</div>
@@ -115,6 +117,7 @@
             </div>
         </section>
     </main>
+
 
     <footer class="bg-blue-700 text-white text-center p-4">
         <p>جميع الحقوق محفوظة © 2024</p>

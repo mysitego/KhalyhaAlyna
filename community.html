@@ -40,14 +40,18 @@
 <body class="bg-blue-100">
 
     <!-- Navbar -->
-    <nav class="bg-white shadow-lg fixed w-full z-10 top-0">
+    <nav class="bg-white shadow-lg fixed w-full z-10 top-0" dir="rtl">
+        
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="text-blue-500 text-2xl font-bold">Logo</div>
+            <div class="text-blue-900 text-base font-bold flex justify-center items-end ">  <img src="images/logo.svg" width="80px" alt=""><span class="px-4 text-2xl">خلها علينا </span> </div>
             <div class="hidden md:flex space-x-4">
-                <a href="index.html" class="text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
-                <a href="virtual_community.html" class="text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700 px-4" ><i class="fas fa-concierge-bell"></i> الخدمات</a>
+                <a href="blog.html" class="text-blue-900 hover:text-blue-700 px-4" ><i class="fas fa-newspaper"></i> المقالات</a>
+                <a href="community.html" class="text-blue-900 hover:text-blue-700  px-4"><i class="fas fa-users"></i> المجتمع</a>
+                <a href="index.html" class="text-blue-900 hover:text-blue-700  px-4"><i class="fas fa-envelope"></i> تواصل معنا</a>
             </div>
-            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded hidden md:block">ابدأ الآن</button>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-1 rounded hidden md:block"> ابدأ الآن </button>
             <div class="md:hidden">
                 <button id="menu-btn" class="text-blue-500 focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -56,9 +60,13 @@
                 </button>
             </div>
         </div>
-        <div id="menu" class="hidden md:hidden">
+        <div id="menu" class="hidden md:hidden z-50">
             <a href="index.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-home"></i> الصفحة الرئيسية</a>
-            <a href="virtual_community.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="index.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-concierge-bell"></i> الخدمات</a>
+            <a href="blog.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-newspaper"></i> المقالات</a>
+            <a href="community.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-users"></i> المجتمع</a>
+            <a href="index.html" class="block px-4 py-2 text-blue-500 hover:text-blue-700"><i class="fas fa-envelope"></i> تواصل معنا</a>
+            <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-4 py-2 rounded w-full mt-2"> ابدأ الآن </button>
         </div>
     </nav>
 
